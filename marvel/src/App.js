@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 
 import HomePage from "./pages/homePage/homePage";
 import CharactersPage from "./pages/charactersPage/CharactersPage";
@@ -8,10 +8,20 @@ import ComicsPage from "./pages/comicsPage/ComicsPage";
 import StoriesPage from "./pages/storiesPage/StoriesPage";
 import ErrorPage from "./pages/errorPage/ErrorPage";
 
-import Header from "./components/Header";
-import NavBar from "./components/NavBar";
+import Header from "./components/header/Header";
+import NavBar from "./components/navBar/NavBar";
+
+import { fetchCharacters } from "./features/characters/charactersSlice";
+
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCharacters());
+  }, []);
+
   return (
     <>
       <Header />
