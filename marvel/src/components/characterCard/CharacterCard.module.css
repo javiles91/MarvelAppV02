@@ -1,0 +1,17 @@
+.card {
+  width: 18rem;
+  border-radius: 15px;
+  border: 1px solid;
+  height: 17rem;
+  overflow: hidden;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.card-img {
+  width: 18rem;
+  height: 85%;
+}
