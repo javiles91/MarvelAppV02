@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CharacterCard from "../../components/characterCard/CharacterCard";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "./CharactersPage.module.css";
+import Pagination from "../../components/pagination/Pagination";
+import {
+  nextPage,
+  previousPage,
+  setPageAndOffset,
+} from "../../features/characters/charactersSlice";
+import { fetchCharacters } from "../../features/characters/charactersSlice";
+import { useParams } from "react-router-dom";
 
 const CharactersPage = () => {
-  const { isLoading, characters } = useSelector((state) => state.characters);
+  const dispatch = useDispatch();
+  const { pageNumber } = useParams();
 
-  console.log(characters);
+  useEffect(() => {
+    dispatch(setPageAndOffset(pageNumber));
+  }, []);
+
+  const { isLoading, characters, page, offset } = useSelector(
+    (state) => state.characters
+  );
+
+  useEffect(() => {
+    dispatch(fetchCharacters(offset));
+  }, [offset]);
 
   if (isLoading) {
     return (
@@ -15,6 +34,8 @@ const CharactersPage = () => {
       </div>
     );
   }
+
+  console.log(characters);
 
   return (
     <div>
@@ -25,11 +46,13 @@ const CharactersPage = () => {
             <CharacterCard
               name={character.name}
               img={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-              key={character.name}
+              key={character.id}
+              id={character.id}
             />
           );
         })}
       </div>
+      <Pagination page={page} nextPage={nextPage} previousPage={previousPage} />
     </div>
   );
 };
