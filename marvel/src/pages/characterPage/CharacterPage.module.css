@@ -1,7 +1,7 @@
 .main-container {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 90%;
   margin: auto;
   margin-top: 3em;
 }
@@ -38,4 +38,9 @@
 
 .comics {
   width: fit-content;
+}
+
+.lists {
+  display: flex;
+  gap: 2rem;
 }
