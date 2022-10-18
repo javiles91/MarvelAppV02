@@ -12,7 +12,6 @@ const NavBar = () => {
         <Link to="/">Home</Link>
         <Link to={`characters/${1}`}>Characters</Link>
         <Link to={`comics/1`}>Comics</Link>
-        <Link to="stories">Stories</Link>
       </nav>
       <hr />
     </>

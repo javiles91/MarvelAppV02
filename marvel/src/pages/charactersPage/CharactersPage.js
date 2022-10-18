@@ -35,8 +35,6 @@ const CharactersPage = () => {
     );
   }
 
-  console.log(characters);
-
   return (
     <div>
       <h1 className={styles["heading-1"]}>Marvel Characters</h1>

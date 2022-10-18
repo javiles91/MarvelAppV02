@@ -18,7 +18,6 @@ const storySlice = createSlice({
     },
     [fetchStoryById.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action);
       state.story = action.payload.results[0];
     },
     [fetchStoryById.rejected]: (state) => {

@@ -5,7 +5,6 @@ import CharactersPage from "./pages/charactersPage/CharactersPage";
 import CharacterPage from "./pages/characterPage/CharacterPage";
 import ComicsPage from "./pages/comicsPage/ComicsPage";
 import ComicPage from "./pages/comicPage/ComicPage";
-import StoriesPage from "./pages/storiesPage/StoriesPage";
 import StoryPage from "./pages/storyPage/StoryPage";
 import ErrorPage from "./pages/errorPage/ErrorPage";
 
@@ -23,7 +22,7 @@ function App() {
         <Route path="character/:characterId" element={<CharacterPage />} />
         <Route path="comics/:comicsPage" element={<ComicsPage />} />
         <Route path="comic/:comicId" element={<ComicPage />} />
-        <Route path="stories" element={<StoriesPage />} />
+
         <Route path="story/:storyId" element={<StoryPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

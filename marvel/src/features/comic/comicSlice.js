@@ -18,7 +18,6 @@ const comicSlice = createSlice({
     },
     [fetchComicById.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action);
       state.comic = action.payload.results[0];
     },
     [fetchComicById.rejected]: (state) => {

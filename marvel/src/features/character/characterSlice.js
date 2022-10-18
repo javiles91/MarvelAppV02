@@ -21,7 +21,6 @@ const characterSlice = createSlice({
     },
     [fetchCharacterById.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action);
       state.character = action.payload.results[0];
     },
     [fetchCharacterById.rejected]: (state) => {

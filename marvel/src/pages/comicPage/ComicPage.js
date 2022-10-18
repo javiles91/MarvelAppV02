@@ -12,8 +12,6 @@ const ComicPage = () => {
     return state.comic;
   });
 
-  console.log(comic);
-
   useEffect(() => {
     dispatch(fetchComicById(comicId));
   }, []);
@@ -42,7 +40,8 @@ const ComicPage = () => {
             <h2>Characters</h2>
             <ul>
               {comic.characters.items.map((character) => {
-                return <li>{character.name}</li>;
+                const id = character.resourceURI.split("/").pop();
+                return <li key={id}>{character.name}</li>;
               })}
             </ul>
           </div>
@@ -50,7 +49,8 @@ const ComicPage = () => {
             <h2>Stories</h2>
             <ul>
               {comic.stories.items.map((storie) => {
-                return <li>{storie.name}</li>;
+                const id = storie.resourceURI.split("/").pop();
+                return <li key={id}>{storie.name}</li>;
               })}
             </ul>
           </div>
@@ -58,8 +58,9 @@ const ComicPage = () => {
             <h2>Creators</h2>
             <ul>
               {comic.creators.items.map((creator) => {
+                const id = creator.resourceURI.split("/").pop();
                 return (
-                  <li>
+                  <li key={id}>
                     {creator.name} as {creator.role}
                   </li>
                 );

@@ -14,9 +14,6 @@ const StoryPage = () => {
 
   const { story, isLoading } = useSelector((state) => state.story);
 
-  console.log("story");
-  console.log(story);
-
   if (isLoading) {
     return (
       <div>
@@ -38,9 +35,7 @@ const StoryPage = () => {
             <ul>
               {story.characters.items.map((character) => {
                 const id = character.resourceURI.split("/").pop();
-
-                //ARREGLR CUANDO SE HAGA EL STORy SERVICE
-                return <li>{character.name}</li>;
+                return <li key={id}>{character.name}</li>;
               })}
             </ul>
           </div>
@@ -53,10 +48,9 @@ const StoryPage = () => {
             <h2>Comics</h2>
             <ul>
               {story.comics.items.map((comic) => {
-                const id = story.resourceURI.split("/").pop();
+                const id = comic.resourceURI.split("/").pop();
 
-                //ARREGLR CUANDO SE HAGA EL STORy SERVICE
-                return <li>{comic.name}</li>;
+                return <li key={id}>{comic.name}</li>;
               })}
             </ul>
           </div>
