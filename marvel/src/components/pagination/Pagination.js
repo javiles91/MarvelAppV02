@@ -3,7 +3,7 @@ import styles from "./Pagination.module.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Pagination = ({ page, nextPage, previousPage }) => {
+const Pagination = ({ page, nextPage, previousPage, type }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
@@ -14,7 +14,7 @@ const Pagination = ({ page, nextPage, previousPage }) => {
           onClick={() => {
             dispatch(previousPage());
             if (page === 1) return;
-            navigate(`/characters/${page - 1}`);
+            navigate(`/${type}/${page - 1}`);
           }}
         >
           Previous
@@ -24,7 +24,7 @@ const Pagination = ({ page, nextPage, previousPage }) => {
           className={styles["change-page"]}
           onClick={() => {
             dispatch(nextPage());
-            navigate(`/characters/${page + 1}`);
+            navigate(`/${type}/${page + 1}`);
           }}
         >
           Next

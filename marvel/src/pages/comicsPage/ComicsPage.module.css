@@ -1,0 +1,14 @@
+.cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  width: 90%;
+  margin: auto;
+  margin-top: 3rem;
+}
+
+.heading-1 {
+  margin-top: 3rem;
+  text-align: center;
+}

@@ -52,7 +52,12 @@ const CharactersPage = () => {
           );
         })}
       </div>
-      <Pagination page={page} nextPage={nextPage} previousPage={previousPage} />
+      <Pagination
+        page={page}
+        nextPage={nextPage}
+        previousPage={previousPage}
+        type="characters"
+      />
     </div>
   );
 };

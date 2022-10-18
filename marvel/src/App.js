@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="characters/:pageNumber" element={<CharactersPage />} />
         <Route path="character/:characterId" element={<CharacterPage />} />
-        <Route path="comics" element={<ComicsPage />} />
+        <Route path="comics/:comicsPage" element={<ComicsPage />} />
         <Route path="comic/:comicId" element={<ComicPage />} />
         <Route path="stories" element={<StoriesPage />} />
         <Route path="story/:storyId" element={<StoryPage />} />

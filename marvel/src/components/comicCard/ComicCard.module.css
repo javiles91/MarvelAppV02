@@ -1,0 +1,21 @@
+.card {
+  width: 18rem;
+  border-radius: 15px;
+  border: 1px solid;
+  height: 17rem;
+  overflow: hidden;
+}
+
+.card-title {
+  display: block;
+  width: fit-content;
+  margin: auto;
+  font-size: 1.3rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.card-img {
+  width: 18rem;
+  height: 85%;
+}
