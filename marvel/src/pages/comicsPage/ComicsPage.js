@@ -37,7 +37,7 @@ const ComicsPage = () => {
 
   return (
     <div>
-      <h1 className={styles["heading-1"]}>Marvel Characters</h1>
+      <h1 className={styles["heading-1"]}>Marvel Comics</h1>
       <div className={styles["cards-container"]}>
         {comics.map((comic) => {
           return (

@@ -1,9 +1,18 @@
-import React from 'react'; 
+import React from "react";
+import Slider from "../../components/slider/Slider";
 
 function HomePage() {
+  const sliderContStyle = {
+    width: "100%",
+    height: "680px",
+    margin: "0 auto",
+  };
+
   return (
     <div>
-      <h1>This is the home page</h1>
+      <div style={sliderContStyle}>
+        <Slider />
+      </div>
     </div>
   );
 }
