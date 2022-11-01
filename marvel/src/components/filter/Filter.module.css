@@ -1,0 +1,29 @@
+.cont {
+  width: fit-content;
+  margin: auto;
+}
+
+.select-cont {
+  display: flex;
+  gap: 1rem;
+}
+
+select {
+  border: 1px solid gray;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  color: gray;
+}
+
+.char-field {
+  display: flex;
+}
+
+.comic-fields {
+  display: flex;
+  gap: 1rem;
+}
+
+/* .hide {
+  display: none;
+} */

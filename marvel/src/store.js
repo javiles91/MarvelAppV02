@@ -5,6 +5,7 @@ import comicReducer from "./features/comic/comicSlice";
 import storyReducer from "./features/story/storySlice";
 import comicsReducer from "./features/comics/ComicsSlice";
 import sliderReducer from "./features/slider/SliderSlice";
+import FilterReducer from "./features/filter/FilterSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     story: storyReducer,
     comics: comicsReducer,
     slider: sliderReducer,
+    charactersFilter: FilterReducer,
   },
 });

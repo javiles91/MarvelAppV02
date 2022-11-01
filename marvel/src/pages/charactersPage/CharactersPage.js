@@ -10,6 +10,7 @@ import {
 } from "../../features/characters/charactersSlice";
 import { fetchCharacters } from "../../features/characters/charactersSlice";
 import { useParams } from "react-router-dom";
+import Filter from "../../components/filter/Filter";
 
 const CharactersPage = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const CharactersPage = () => {
 
   return (
     <div>
+      <Filter />
       <h1 className={styles["heading-1"]}>Marvel Characters</h1>
       <div className={styles["cards-container"]}>
         {characters.map((character) => {

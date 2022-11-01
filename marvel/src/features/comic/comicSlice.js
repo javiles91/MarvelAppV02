@@ -1,12 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getComicById } from "../../services/ComicService";
+import { getComicById, getComicByTitle } from "../../services/ComicService";
 
 const initialState = {
   comic: [],
   isLoading: true,
+  isValidComicName: true,
 };
 
 export const fetchComicById = createAsyncThunk("comic/get", getComicById);
+
+export const fetchComicByTitle = createAsyncThunk(
+  "comic/getByTitle",
+  getComicByTitle
+);
 
 const comicSlice = createSlice({
   name: "comic",
@@ -21,6 +27,24 @@ const comicSlice = createSlice({
       state.comic = action.payload.results[0];
     },
     [fetchComicById.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [fetchComicByTitle.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchComicByTitle.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(action);
+      if (action.payload === undefined) {
+        state.isValidComicName = false;
+        return;
+      }
+      state.isValidComicName = true;
+      state.comic = action.payload.results[0];
+
+      // state.comic = action.payload.results[0];
+    },
+    [fetchComicByTitle.rejected]: (state) => {
       state.isLoading = false;
     },
   },

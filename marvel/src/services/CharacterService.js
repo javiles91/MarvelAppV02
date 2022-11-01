@@ -8,3 +8,15 @@ export const getCharacterById = (id) => {
     throw new Error(err);
   });
 };
+
+export const getCharacterByName = (name) => {
+  return fetchFromApi({
+    method: "GET",
+    path: `/characters`,
+    params: {
+      name: name,
+    },
+  }).catch((err) => {
+    throw new Error(err);
+  });
+};

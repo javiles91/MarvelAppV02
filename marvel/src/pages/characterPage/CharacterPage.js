@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
-import { fetchCharacterById } from "../../features/character/characterSlice";
+import {
+  fetchCharacterById,
+  setCharacterId,
+} from "../../features/character/characterSlice";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./CharacterPage.module.css";
@@ -10,12 +13,16 @@ const CharacterPage = () => {
   const { characterId } = useParams();
 
   useEffect(() => {
-    dispatch(fetchCharacterById(characterId));
+    dispatch(setCharacterId(characterId));
   }, []);
 
-  const { isLoading, character } = useSelector((state) => {
+  const { isLoading, character, id } = useSelector((state) => {
     return state.character;
   });
+
+  useEffect(() => {
+    dispatch(fetchCharacterById(characterId));
+  }, [id]);
 
   if (isLoading) {
     return (

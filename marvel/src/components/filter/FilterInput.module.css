@@ -1,0 +1,29 @@
+.formInput {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+input {
+  padding: 0.3rem;
+  margin: 3px 0px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+input[type="number"] {
+  width: 7rem;
+}
+
+label {
+  font-size: 1.2rem;
+  color: gray;
+  width: fit-content;
+}
+
+span {
+  font-size: 12px;
+  padding: 3px;
+  color: red;
+  display: none;
+}
