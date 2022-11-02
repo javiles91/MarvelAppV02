@@ -1,19 +1,22 @@
 import styles from "./Filter.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCharacterByName } from "../../features/character/characterSlice";
-import { fetchComicByTitle } from "../../features/comic/comicSlice";
+import {
+  fetchCharacterByName,
+  resetValidityforName,
+} from "../../features/character/characterSlice";
+import {
+  fetchComicByTitle,
+  resetValidityforComic,
+} from "../../features/comic/comicSlice";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import FilterInput from "./FilterInput";
 import { setType } from "../../features/filter/FilterSlice";
 
 const Filter = () => {
+  // console.log("filter render");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(setType("name"));
-  }, []);
 
   const { character, isValidCharacterName } = useSelector((state) => {
     return state.character;
@@ -31,13 +34,10 @@ const Filter = () => {
 
     const { filterType, CharacterName, ComicTitle, issueNumber, startYear } =
       Object.fromEntries(data.entries());
-    // console.log(filterType, CharacterName, ComicTitle, issueNumber, startYear);
 
     if (filterType === "name") {
       dispatch(fetchCharacterByName(CharacterName));
     } else if (filterType === "comic") {
-      console.log(ComicTitle, issueNumber, startYear);
-
       dispatch(fetchComicByTitle({ ComicTitle, issueNumber, startYear }));
     }
   };
@@ -50,7 +50,13 @@ const Filter = () => {
         fn();
       } else {
         didMount.current = true;
+        dispatch(setType("name"));
       }
+
+      return () => {
+        dispatch(resetValidityforName());
+        dispatch(resetValidityforComic());
+      };
     }, [character, comic]);
   };
 

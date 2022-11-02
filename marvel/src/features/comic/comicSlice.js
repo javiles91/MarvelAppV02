@@ -17,7 +17,11 @@ export const fetchComicByTitle = createAsyncThunk(
 const comicSlice = createSlice({
   name: "comic",
   initialState,
-  reducers: {},
+  reducers: {
+    resetValidityforComic: (state) => {
+      state.isValidCharacterName = true;
+    },
+  },
   extraReducers: {
     [fetchComicById.pending]: (state) => {
       state.isLoading = true;
@@ -37,6 +41,7 @@ const comicSlice = createSlice({
       console.log(action);
       if (action.payload === undefined) {
         state.isValidComicName = false;
+        state.isLoading = true;
         return;
       }
       state.isValidComicName = true;
@@ -49,5 +54,7 @@ const comicSlice = createSlice({
     },
   },
 });
+
+export const { resetValidityforComic } = comicSlice.actions;
 
 export default comicSlice.reducer;

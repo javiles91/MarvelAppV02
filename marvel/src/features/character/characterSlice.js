@@ -26,6 +26,9 @@ const characterSlice = createSlice({
     setCharacterId: (state, action) => {
       state.id = action.payload;
     },
+    resetValidityforName: (state) => {
+      state.isValidCharacterName = true;
+    },
   },
   extraReducers: {
     [fetchCharacterById.pending]: (state) => {
@@ -46,6 +49,7 @@ const characterSlice = createSlice({
       //Aca tengo que ver como putas borro el texto y muestro un mensaje de invalido
       if (action.payload.results.length === 0) {
         state.isValidCharacterName = false;
+        state.isLoading = true;
         return;
       }
       state.isValidCharacterName = true;
@@ -57,6 +61,6 @@ const characterSlice = createSlice({
   },
 });
 
-export const { setCharacterId } = characterSlice.actions;
+export const { setCharacterId, resetValidityforName } = characterSlice.actions;
 
 export default characterSlice.reducer;

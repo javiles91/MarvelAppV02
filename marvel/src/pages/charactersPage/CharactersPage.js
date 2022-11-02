@@ -12,11 +12,27 @@ import { fetchCharacters } from "../../features/characters/charactersSlice";
 import { useParams } from "react-router-dom";
 import Filter from "../../components/filter/Filter";
 
+// const Test = () => {
+//   useEffect(() => {
+//     console.log("inner useEffct");
+//     return () => {
+//       // didUnmount.current = true;
+//       // console.log(didUnmount);
+//       console.log("clean up");
+//     };
+//   }, []);
+//   // console.log(didUnmount);
+
+//   return <div>test</div>;
+// };
+
 const CharactersPage = () => {
+  // console.log("render");
   const dispatch = useDispatch();
   const { pageNumber } = useParams();
 
   useEffect(() => {
+    // console.log("page offset");
     dispatch(setPageAndOffset(pageNumber));
   }, []);
 
@@ -25,6 +41,7 @@ const CharactersPage = () => {
   );
 
   useEffect(() => {
+    // console.log("fetch characters");
     dispatch(fetchCharacters(offset));
   }, [offset]);
 
@@ -38,6 +55,7 @@ const CharactersPage = () => {
 
   return (
     <div>
+      {/* <Test /> */}
       <Filter />
       <h1 className={styles["heading-1"]}>Marvel Characters</h1>
       <div className={styles["cards-container"]}>

@@ -10,9 +10,6 @@ export const getComicById = (id) => {
 };
 
 export const getComicByTitle = ({ ComicTitle, startYear, issueNumber }) => {
-  console.log(ComicTitle);
-  console.log(startYear);
-  console.log(issueNumber);
   return fetchFromApi({
     method: "GET",
     path: `/comics`,
