@@ -62,7 +62,7 @@ const Filter = () => {
 
   useDidMountEffect(() => {
     if (filterType === "name") navigate(`/character/${character.id}`);
-    else if (filterType === "comic") navigate(`/comic/${comic.id}`);
+    else if (filterType === "comic") navigate(`/comic/characters/${comic.id}`);
   });
 
   const characterSearchFields = (

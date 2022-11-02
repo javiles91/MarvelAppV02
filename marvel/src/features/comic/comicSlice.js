@@ -38,7 +38,7 @@ const comicSlice = createSlice({
     },
     [fetchComicByTitle.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action);
+
       if (action.payload === undefined) {
         state.isValidComicName = false;
         state.isLoading = true;

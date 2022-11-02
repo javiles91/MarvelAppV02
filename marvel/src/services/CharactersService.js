@@ -12,3 +12,15 @@ export const getCharacters = (offset = 0) => {
     throw new Error(err);
   });
 };
+
+export const getCharactersFromComic = (id) => {
+  return fetchFromApi({
+    method: "GET",
+    path: `/comics/${id}/characters`,
+    params: {
+      orderBy: "modified",
+    },
+  }).catch((err) => {
+    throw new Error(err);
+  });
+};
