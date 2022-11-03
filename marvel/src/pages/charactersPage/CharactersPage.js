@@ -4,27 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./CharactersPage.module.css";
 import Pagination from "../../components/pagination/Pagination";
 import {
-  nextPage,
-  previousPage,
   setPageAndOffset,
+  toggleAscending,
 } from "../../features/characters/charactersSlice";
 import { fetchCharacters } from "../../features/characters/charactersSlice";
 import { useParams } from "react-router-dom";
 import Filter from "../../components/filter/Filter";
-
-// const Test = () => {
-//   useEffect(() => {
-//     console.log("inner useEffct");
-//     return () => {
-//       // didUnmount.current = true;
-//       // console.log(didUnmount);
-//       console.log("clean up");
-//     };
-//   }, []);
-//   // console.log(didUnmount);
-
-//   return <div>test</div>;
-// };
 
 const CharactersPage = () => {
   // console.log("render");
@@ -34,16 +19,18 @@ const CharactersPage = () => {
   useEffect(() => {
     // console.log("page offset");
     dispatch(setPageAndOffset(pageNumber));
-  }, []);
+  }, [pageNumber]);
 
-  const { isLoading, characters, page, offset } = useSelector(
+  const { isLoading, characters, page, offset, ascending, total } = useSelector(
     (state) => state.characters
   );
 
   useEffect(() => {
     // console.log("fetch characters");
-    dispatch(fetchCharacters(offset));
-  }, [offset]);
+    let orderBy = "name";
+    if (!ascending) orderBy = "-name";
+    dispatch(fetchCharacters({ offset, orderBy }));
+  }, [offset, ascending]);
 
   if (isLoading) {
     return (
@@ -57,7 +44,11 @@ const CharactersPage = () => {
     <div>
       {/* <Test /> */}
       <Filter />
-      <h1 className={styles["heading-1"]}>Marvel Characters</h1>
+      <h1 className={styles["heading-1"]}>
+        Marvel Characters{" "}
+        <button onClick={() => dispatch(toggleAscending())}>⇅ A/Z</button>
+      </h1>
+
       <div className={styles["cards-container"]}>
         {characters.map((character) => {
           return (
@@ -70,12 +61,7 @@ const CharactersPage = () => {
           );
         })}
       </div>
-      <Pagination
-        page={page}
-        nextPage={nextPage}
-        previousPage={previousPage}
-        type="characters"
-      />
+      <Pagination page={page} type="characters" total={total} />
     </div>
   );
 };

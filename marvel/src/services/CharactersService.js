@@ -1,11 +1,11 @@
 import { fetchFromApi } from "./MarvelAPIService";
 
-export const getCharacters = (offset = 0) => {
+export const getCharacters = ({ offset = 0, orderBy = "name" }) => {
   return fetchFromApi({
     method: "GET",
     path: "/characters",
     params: {
-      orderBy: "name",
+      orderBy: orderBy,
       offset: offset,
     },
   }).catch((err) => {

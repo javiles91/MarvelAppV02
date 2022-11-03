@@ -6,6 +6,8 @@ const initialState = {
   isLoading: true,
   page: 1,
   offset: 0,
+  ascending: true,
+  total: 0,
 };
 
 export const fetchCharacters = createAsyncThunk(
@@ -17,21 +19,26 @@ const charactersSlice = createSlice({
   name: "characters",
   initialState,
   reducers: {
-    nextPage: (state) => {
-      state.page += 1;
-      state.offset += 20;
-    },
-    previousPage: (state) => {
-      if (state.page === 1) return;
-      else {
-        state.page -= 1;
-        state.offset -= 20;
-      }
-    },
+    //DELETE THE BELOW 2 METHODS LATER
+    // nextPage: (state) => {
+    //   state.page += 1;
+    //   state.offset += 20;
+    // },
+    // previousPage: (state) => {
+    //   if (state.page === 1) return;
+    //   else {
+    //     state.page -= 1;
+    //     state.offset -= 20;
+    //   }
+    // },
     setPageAndOffset: (state, { payload }) => {
       const pageNumber = payload;
       state.page = Number(pageNumber);
       state.offset = 20 * (pageNumber - 1);
+    },
+    toggleAscending: (state) => {
+      console.log("ascending");
+      state.ascending = !state.ascending;
     },
   },
   extraReducers: {
@@ -40,6 +47,7 @@ const charactersSlice = createSlice({
     },
     [fetchCharacters.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.total = action.payload.total;
       state.characters = action.payload.results;
     },
     [fetchCharacters.rejected]: (state) => {
@@ -48,7 +56,6 @@ const charactersSlice = createSlice({
   },
 });
 
-export const { nextPage, previousPage, setPageAndOffset } =
-  charactersSlice.actions;
+export const { setPageAndOffset, toggleAscending } = charactersSlice.actions;
 
 export default charactersSlice.reducer;

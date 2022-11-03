@@ -6,6 +6,7 @@ const initialState = {
   isLoading: true,
   page: 1,
   offset: 0,
+  total: 0,
 };
 
 export const fetchComics = createAsyncThunk("get/comics", getComics);
@@ -14,17 +15,18 @@ const comicsSlice = createSlice({
   name: "comics",
   initialState,
   reducers: {
-    nextPage: (state) => {
-      state.page += 1;
-      state.offset += 20;
-    },
-    previousPage: (state) => {
-      if (state.page === 1) return;
-      else {
-        state.page -= 1;
-        state.offset -= 20;
-      }
-    },
+    //Delete this later
+    // nextPage: (state) => {
+    //   state.page += 1;
+    //   state.offset += 20;
+    // },
+    // previousPage: (state) => {
+    //   if (state.page === 1) return;
+    //   else {
+    //     state.page -= 1;
+    //     state.offset -= 20;
+    //   }
+    // },
     setPageAndOffset: (state, { payload }) => {
       const pageNumber = payload;
       state.page = Number(pageNumber);
@@ -37,6 +39,7 @@ const comicsSlice = createSlice({
     },
     [fetchComics.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.total = action.payload.total;
       state.comics = action.payload.results;
     },
     [fetchComics.rejected]: (state) => {
@@ -45,6 +48,6 @@ const comicsSlice = createSlice({
   },
 });
 
-export const { nextPage, previousPage, setPageAndOffset } = comicsSlice.actions;
+export const { setPageAndOffset } = comicsSlice.actions;
 
 export default comicsSlice.reducer;

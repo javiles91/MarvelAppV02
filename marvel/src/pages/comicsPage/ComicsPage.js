@@ -5,11 +5,7 @@ import styles from "./ComicsPage.module.css";
 import { fetchComics } from "../../features/comics/ComicsSlice";
 import { useParams } from "react-router-dom";
 import Pagination from "../../components/pagination/Pagination";
-import {
-  nextPage,
-  previousPage,
-  setPageAndOffset,
-} from "../../features/comics/ComicsSlice";
+import { setPageAndOffset } from "../../features/comics/ComicsSlice";
 
 const ComicsPage = () => {
   const dispatch = useDispatch();
@@ -17,9 +13,9 @@ const ComicsPage = () => {
 
   useEffect(() => {
     dispatch(setPageAndOffset(comicsPage));
-  }, []);
+  }, [comicsPage]);
 
-  const { isLoading, comics, page, offset } = useSelector(
+  const { isLoading, comics, page, offset, total } = useSelector(
     (state) => state.comics
   );
 
@@ -50,12 +46,7 @@ const ComicsPage = () => {
           );
         })}
       </div>
-      <Pagination
-        page={page}
-        nextPage={nextPage}
-        previousPage={previousPage}
-        type="comics"
-      />
+      <Pagination page={page} total={total} type="comics" />
     </div>
   );
 };
