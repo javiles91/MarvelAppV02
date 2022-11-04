@@ -9,7 +9,7 @@ import {
 } from "../../features/characters/charactersSlice";
 import { fetchCharacters } from "../../features/characters/charactersSlice";
 import { useParams } from "react-router-dom";
-import Filter from "../../components/filter/Filter";
+import Filter from "../../components/charactersfilter/Filter";
 
 const CharactersPage = () => {
   // console.log("render");

@@ -7,6 +7,7 @@ const initialState = {
   page: 1,
   offset: 0,
   total: 0,
+  isValidSearch: true,
 };
 
 export const fetchComics = createAsyncThunk("get/comics", getComics);
@@ -39,6 +40,13 @@ const comicsSlice = createSlice({
     },
     [fetchComics.fulfilled]: (state, action) => {
       state.isLoading = false;
+
+      if (action.payload.results.length === 0) {
+        state.isValidSearch = false;
+        return;
+      }
+
+      state.isValidSearch = true;
       state.total = action.payload.total;
       state.comics = action.payload.results;
     },

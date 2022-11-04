@@ -6,6 +6,7 @@ import { fetchComics } from "../../features/comics/ComicsSlice";
 import { useParams } from "react-router-dom";
 import Pagination from "../../components/pagination/Pagination";
 import { setPageAndOffset } from "../../features/comics/ComicsSlice";
+import ComicsFilter from "../../components/comicsFilter/ComicsFilter";
 
 const ComicsPage = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const ComicsPage = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchComics(offset));
+    dispatch(fetchComics({ offset }));
   }, [offset]);
 
   if (isLoading) {
@@ -33,6 +34,8 @@ const ComicsPage = () => {
 
   return (
     <div>
+      <ComicsFilter />
+
       <h1 className={styles["heading-1"]}>Marvel Comics</h1>
       <div className={styles["cards-container"]}>
         {comics.map((comic) => {

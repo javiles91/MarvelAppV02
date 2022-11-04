@@ -10,7 +10,7 @@ import {
 } from "../../features/comic/comicSlice";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import FilterInput from "./FilterInput";
+import FilterInput from "../../components/filterInput/FilterInput";
 import { setType } from "../../features/filter/FilterSlice";
 
 const Filter = () => {
@@ -94,7 +94,7 @@ const Filter = () => {
         type="text"
         name="ComicTitle"
         label="Title"
-        errorMessage="not a valid title"
+        // errorMessage="not a valid title"
         placeholder="Hulk"
         required={true}
       />
@@ -103,7 +103,7 @@ const Filter = () => {
         type="number"
         name="issueNumber"
         label="Issue number"
-        errorMessage="not a valid number"
+        // errorMessage="not a valid number"
         placeholder="53"
         required={true}
       />
@@ -112,7 +112,7 @@ const Filter = () => {
         type="number"
         name="startYear"
         label="Start year"
-        errorMessage="not a valid year"
+        // errorMessage="not a valid year"
         placeholder="2008"
         required={true}
       />
