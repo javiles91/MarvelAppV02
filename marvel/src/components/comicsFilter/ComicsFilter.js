@@ -13,8 +13,11 @@ const ComicsFilter = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
+    const formObj = Object.fromEntries(data.entries());
 
-    const { title, issueNumber, format } = Object.fromEntries(data.entries());
+    if (Object.values(formObj).every((value) => value === "")) return;
+
+    const { title, issueNumber, format } = formObj;
 
     dispatch(fetchComics({ offset: 0, title, issueNumber, format }));
   };
@@ -44,6 +47,7 @@ const ComicsFilter = () => {
           name="format"
           onChange={() => console.log("comics format")}
         >
+          <option value="" default></option>
           <option value="comic">Comic</option>
           <option value="magazine">Magazine</option>
           <option value="trade paperback">Trade paperback</option>

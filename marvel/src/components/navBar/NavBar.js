@@ -13,14 +13,7 @@ const NavBar = () => {
       <nav className={styles.container}>
         <Link to="/">Home</Link>
         <Link to={`characters/${1}`}>Characters</Link>
-        <Link
-          to={`comics/1`}
-          onClick={() => {
-            dispatch(fetchComics({ offset: 0 }));
-          }}
-        >
-          Comics
-        </Link>
+        <Link to={`comics/1`}>Comics</Link>
       </nav>
       <hr />
     </>
