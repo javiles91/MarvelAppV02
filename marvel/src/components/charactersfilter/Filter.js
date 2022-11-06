@@ -18,15 +18,62 @@ const Filter = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { filterType } = useSelector((state) => {
+    return state.charactersFilter;
+  });
+
+  //To add event listener on submit button and enable it only the form has data to do a searchconst
+  const nameRef = useRef(null);
+  const submitRef = useRef(null);
+  const comicFieldsContRef = useRef(null);
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    if (filterType === "name") {
+      const handleInputEvent = (e) => {
+        let nameInputValue = e.target.value;
+        if (nameInputValue === "")
+          submitRef.current.setAttribute("disabled", "");
+        else submitRef.current.removeAttribute("disabled");
+      };
+
+      const nameInput = nameRef.current;
+
+      console.log(nameInput);
+
+      nameInput.addEventListener("input", handleInputEvent);
+
+      return () => {
+        nameInput.removeEventListener("input", handleInputEvent);
+      };
+    }
+    //
+    if (filterType === "comic") {
+      const handleInputEvent = (e) => {
+        console.log(e.target);
+        const formData = new FormData(formRef.current);
+        const { ComicTitle, issueNumber, startYear } = Object.fromEntries(
+          formData.entries()
+        );
+
+        if ([ComicTitle, issueNumber, startYear].every((input) => input !== ""))
+          submitRef.current.removeAttribute("disabled");
+        else submitRef.current.setAttribute("disabled", "");
+      };
+
+      const comicFieldsParent = comicFieldsContRef.current;
+
+      comicFieldsParent.addEventListener("input", handleInputEvent);
+    }
+  }, [filterType]);
+
+  //
+
   const { character, isValidCharacterName } = useSelector((state) => {
     return state.character;
   });
 
   const { comic, isValidComicName } = useSelector((state) => state.comic);
-
-  const { filterType } = useSelector((state) => {
-    return state.charactersFilter;
-  });
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -68,15 +115,17 @@ const Filter = () => {
   const characterSearchFields = (
     <div className={`${styles["char-field"]} `}>
       <FilterInput
+        reference={nameRef}
         onChange={() => {
           console.log("userName");
         }}
         type="text"
         name="CharacterName"
         label="Character name"
-        errorMessage="not a valid name"
+        // errorMessage="not a valid name"
         placeholder="Wolverine"
         required={true}
+        id={1}
       />
     </div>
   );
@@ -86,6 +135,7 @@ const Filter = () => {
       className={`${styles["comic-fields"]} ${
         filterType === "comic" ? "" : styles.hide
       }`}
+      ref={comicFieldsContRef}
     >
       <FilterInput
         onChange={() => {
@@ -97,6 +147,7 @@ const Filter = () => {
         // errorMessage="not a valid title"
         placeholder="Hulk"
         required={true}
+        id={2}
       />
       <FilterInput
         onChange={() => console.log("issue number")}
@@ -106,6 +157,7 @@ const Filter = () => {
         // errorMessage="not a valid number"
         placeholder="53"
         required={true}
+        id={3}
       />
       <FilterInput
         onChange={() => console.log("start Year")}
@@ -115,6 +167,7 @@ const Filter = () => {
         // errorMessage="not a valid year"
         placeholder="2008"
         required={true}
+        id={4}
       />
     </div>
   );
@@ -126,7 +179,7 @@ const Filter = () => {
 
   return (
     <>
-      <form className={styles.cont} onSubmit={submitHandler}>
+      <form className={styles.cont} onSubmit={submitHandler} ref={formRef}>
         <div className={styles["select-cont"]}>
           <label htmlFor="options">Search characters by:</label>
           <select
@@ -145,7 +198,7 @@ const Filter = () => {
           <div>{comicSearchField}</div>
         )}
 
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" ref={submitRef} disabled />
         <span
           style={{
             display: isValidSearch() ? "none" : "block",
