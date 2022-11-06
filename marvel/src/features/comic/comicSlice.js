@@ -19,7 +19,7 @@ const comicSlice = createSlice({
   initialState,
   reducers: {
     resetValidityforComic: (state) => {
-      state.isValidCharacterName = true;
+      state.isValidComicName = true;
     },
   },
   extraReducers: {

@@ -19,18 +19,6 @@ const charactersSlice = createSlice({
   name: "characters",
   initialState,
   reducers: {
-    //DELETE THE BELOW 2 METHODS LATER
-    // nextPage: (state) => {
-    //   state.page += 1;
-    //   state.offset += 20;
-    // },
-    // previousPage: (state) => {
-    //   if (state.page === 1) return;
-    //   else {
-    //     state.page -= 1;
-    //     state.offset -= 20;
-    //   }
-    // },
     setPageAndOffset: (state, { payload }) => {
       const pageNumber = payload;
       state.page = Number(pageNumber);

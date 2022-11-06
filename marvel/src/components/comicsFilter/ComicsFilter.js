@@ -1,14 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import FilterInput from "../filterInput/FilterInput";
 import styles from "./comicsFilter.module.css";
-import { fetchComics } from "../../features/comics/ComicsSlice";
+import { fetchComics, setIsFiltered } from "../../features/comics/ComicsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const ComicsFilter = () => {
   const dispatch = useDispatch();
-  const { isValidSearch } = useSelector((state) => {
+  const { isValidSearch, isFiltered } = useSelector((state) => {
     return state.comics;
   });
+
+  //Adding evet listener to submit input to control if it is clickable or not
+
+  const submitRef = useRef(null);
+  const formRef = useRef(null);
+  const inputsParentRef = useRef(null);
+
+  useEffect(() => {
+    const handleInputEvent = (e) => {
+      console.log("eventHandler");
+      const formData = new FormData(formRef.current);
+      const { title, issueNumber, format } = Object.fromEntries(
+        formData.entries()
+      );
+
+      console.log(
+        Boolean([title, issueNumber, format].some((input) => input !== ""))
+      );
+
+      if ([title, issueNumber, format].some((input) => input !== "")) {
+        submitRef.current.removeAttribute("disabled");
+      } else submitRef.current.setAttribute("disabled", "");
+    };
+    const inputsParent = inputsParentRef.current;
+
+    inputsParent.addEventListener("input", handleInputEvent);
+
+    return () => {
+      inputsParent.removeEventListener("input", handleInputEvent);
+    };
+  }, []);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -20,10 +51,12 @@ const ComicsFilter = () => {
     const { title, issueNumber, format } = formObj;
 
     dispatch(fetchComics({ offset: 0, title, issueNumber, format }));
+
+    dispatch(setIsFiltered(true));
   };
 
   const comicSearchFields = (
-    <div className={styles.cont}>
+    <div className={styles.cont} ref={inputsParentRef}>
       <FilterInput
         onChange={() => console.log("Comic title")}
         type="text"
@@ -62,14 +95,21 @@ const ComicsFilter = () => {
   );
 
   return (
-    <form className={styles["form-cont"]} onSubmit={submitHandler}>
+    <form
+      className={styles["form-cont"]}
+      onSubmit={submitHandler}
+      ref={formRef}
+    >
       <div>{comicSearchFields}</div>
       <div>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" ref={submitRef} disabled />
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             dispatch(fetchComics({ offset: 0 }));
+            dispatch(setIsFiltered(false));
           }}
+          style={{ display: isFiltered ? "block" : "none" }}
         >
           Clear filter
         </button>

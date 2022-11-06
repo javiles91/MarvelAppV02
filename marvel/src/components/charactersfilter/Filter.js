@@ -29,7 +29,9 @@ const Filter = () => {
   const formRef = useRef(null);
 
   useEffect(() => {
+    submitRef.current.setAttribute("disabled", "");
     if (filterType === "name") {
+      dispatch(resetValidityforComic());
       const handleInputEvent = (e) => {
         let nameInputValue = e.target.value;
         if (nameInputValue === "")
@@ -39,8 +41,6 @@ const Filter = () => {
 
       const nameInput = nameRef.current;
 
-      console.log(nameInput);
-
       nameInput.addEventListener("input", handleInputEvent);
 
       return () => {
@@ -49,8 +49,9 @@ const Filter = () => {
     }
     //
     if (filterType === "comic") {
+      dispatch(resetValidityforName());
       const handleInputEvent = (e) => {
-        console.log(e.target);
+        console.log("char handler");
         const formData = new FormData(formRef.current);
         const { ComicTitle, issueNumber, startYear } = Object.fromEntries(
           formData.entries()
@@ -64,6 +65,10 @@ const Filter = () => {
       const comicFieldsParent = comicFieldsContRef.current;
 
       comicFieldsParent.addEventListener("input", handleInputEvent);
+
+      return () => {
+        comicFieldsParent.removeEventListener("input", handleInputEvent);
+      };
     }
   }, [filterType]);
 

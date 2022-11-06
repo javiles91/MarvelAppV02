@@ -8,6 +8,7 @@ const initialState = {
   offset: 0,
   total: 0,
   isValidSearch: true,
+  isFiltered: false,
 };
 
 export const fetchComics = createAsyncThunk("get/comics", getComics);
@@ -16,22 +17,13 @@ const comicsSlice = createSlice({
   name: "comics",
   initialState,
   reducers: {
-    //Delete this later
-    // nextPage: (state) => {
-    //   state.page += 1;
-    //   state.offset += 20;
-    // },
-    // previousPage: (state) => {
-    //   if (state.page === 1) return;
-    //   else {
-    //     state.page -= 1;
-    //     state.offset -= 20;
-    //   }
-    // },
     setPageAndOffset: (state, { payload }) => {
       const pageNumber = payload;
       state.page = Number(pageNumber);
       state.offset = 20 * (pageNumber - 1);
+    },
+    setIsFiltered: (state, { payload }) => {
+      state.isFiltered = payload;
     },
   },
   extraReducers: {
@@ -56,6 +48,6 @@ const comicsSlice = createSlice({
   },
 });
 
-export const { setPageAndOffset } = comicsSlice.actions;
+export const { setPageAndOffset, setIsFiltered } = comicsSlice.actions;
 
 export default comicsSlice.reducer;
