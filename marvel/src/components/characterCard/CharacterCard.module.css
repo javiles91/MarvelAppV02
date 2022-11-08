@@ -1,3 +1,8 @@
+.link {
+  text-decoration: none;
+  border: none;
+}
+
 .card {
   width: 20rem;
   border-radius: 5px;
@@ -24,7 +29,6 @@
   width: fit-content;
   margin: auto;
   font-size: 1.6em;
-  text-decoration: none;
   color: white;
   padding-top: 0.7rem;
 }

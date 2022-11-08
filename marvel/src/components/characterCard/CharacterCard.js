@@ -5,18 +5,18 @@ import { Link } from "react-router-dom";
 const CharacterCard = ({ name, img, id, description }) => {
   return (
     <div className={styles.card}>
-      <img src={img} alt={name} className={styles["card-img"]} />
-      <div className={styles["card-body"]}>
-        <Link to={`/character/${id}`} className={styles["card-title"]}>
-          {name}
-        </Link>
-        <div className={styles.description}>
-          <h3>{name}</h3>
-          {description.length === 0
-            ? "Description is not available"
-            : description}
+      <Link to={`/character/${id}`} className={styles.link}>
+        <img src={img} alt={name} className={styles["card-img"]} />
+        <div className={styles["card-body"]}>
+          <div className={styles["card-title"]}>{name}</div>
+          <div className={styles.description}>
+            <h3>{name}</h3>
+            {description.length === 0
+              ? "Description is not available"
+              : description}
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };
