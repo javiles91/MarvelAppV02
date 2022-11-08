@@ -40,6 +40,7 @@ const ComicCharactersPage = () => {
               img={`${character.thumbnail.path}.${character.thumbnail.extension}`}
               key={character.id}
               id={character.id}
+              description={character.description}
             />
           );
         })}

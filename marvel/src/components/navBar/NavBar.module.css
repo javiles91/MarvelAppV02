@@ -1,9 +1,11 @@
 .container {
   display: flex;
   justify-content: space-around;
+  background-color: hwb(202 17% 79%);
 }
 
 .container a {
   text-decoration: none;
   font-size: 1.7rem;
+  color: white;
 }

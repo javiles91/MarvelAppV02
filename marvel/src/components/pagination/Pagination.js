@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./Pagination.module.css";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Pagination = ({ page, nextPage, previousPage, type, total }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
-    <nav>
+    <nav className={styles.cont}>
       <ul className={styles.pagination}>
         <li
           className={styles["change-page"]}
@@ -15,27 +15,25 @@ const Pagination = ({ page, nextPage, previousPage, type, total }) => {
             navigate(`/${type}/${1}`);
           }}
         >
-          First
+          «
         </li>
         <li
           className={styles["change-page"]}
           onClick={() => {
-            // dispatch(previousPage()); //Delete this later
             if (page === 1) return;
             navigate(`/${type}/${page - 1}`);
           }}
         >
-          Previous
+          ‹
         </li>
         <li className={styles["current"]}>{page}</li>
         <li
           className={styles["change-page"]}
           onClick={() => {
-            // dispatch(nextPage()); //Delete this later
             navigate(`/${type}/${page + 1}`);
           }}
         >
-          Next
+          ›
         </li>
         <li
           className={styles["change-page"]}
@@ -44,7 +42,7 @@ const Pagination = ({ page, nextPage, previousPage, type, total }) => {
             navigate(`/${type}/${Math.ceil(total / 20)}`);
           }}
         >
-          Last
+          »
         </li>
       </ul>
     </nav>

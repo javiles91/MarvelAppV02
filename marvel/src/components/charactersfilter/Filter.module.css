@@ -1,22 +1,25 @@
 .cont {
   width: fit-content;
   margin: auto;
+  padding-top: 2rem;
 }
 
 .select-cont {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
 select {
   border: 1px solid gray;
   border-radius: 5px;
   font-size: 1.2rem;
-  color: gray;
+  color: white;
 }
 
 .char-field {
   display: flex;
+  width: 100%;
 }
 
 .comic-fields {

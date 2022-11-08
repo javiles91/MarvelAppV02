@@ -28,7 +28,6 @@ const NavBar = () => {
           Comics
         </Link>
       </nav>
-      <hr />
     </>
   );
 };

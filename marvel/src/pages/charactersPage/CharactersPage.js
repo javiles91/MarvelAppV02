@@ -41,13 +41,18 @@ const CharactersPage = () => {
   }
 
   return (
-    <div>
+    <div className={styles["main-container"]}>
       {/* <Test /> */}
       <Filter />
-      <h1 className={styles["heading-1"]}>
-        Marvel Characters{" "}
-        <button onClick={() => dispatch(toggleAscending())}>⇅ A/Z</button>
-      </h1>
+      <div className={styles["title-cont"]}>
+        <h1 className={styles["heading-1"]}>Marvel Characters </h1>
+        <button
+          onClick={() => dispatch(toggleAscending())}
+          className={styles["sort-btn"]}
+        >
+          ⇅ A/Z
+        </button>
+      </div>
 
       <div className={styles["cards-container"]}>
         {characters.map((character) => {
@@ -57,6 +62,7 @@ const CharactersPage = () => {
               img={`${character.thumbnail.path}.${character.thumbnail.extension}`}
               key={character.id}
               id={character.id}
+              description={character.description}
             />
           );
         })}

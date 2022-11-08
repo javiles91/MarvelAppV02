@@ -1,7 +1,7 @@
 .formInput {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 100%;
 }
 
 input {
@@ -15,9 +15,18 @@ input[type="number"] {
   width: 7rem;
 }
 
+input[type="text"] {
+  width: 100%;
+}
+
+input[type="submit"] {
+  background-color: white;
+  padding: 4px 8px;
+}
+
 label {
-  font-size: 1.2rem;
-  color: gray;
+  font-size: 1.9rem;
+  color: white;
   width: fit-content;
 }
 
@@ -26,4 +35,16 @@ span {
   padding: 3px;
   color: red;
   display: none;
+}
+
+select {
+  font-size: 1.6rem;
+  color: black;
+  width: fit-content;
+  background-color: white;
+  height: 2rem;
+}
+
+::placeholder {
+  color: grey;
 }
