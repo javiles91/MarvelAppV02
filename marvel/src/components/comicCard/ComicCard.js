@@ -5,12 +5,10 @@ import { Link } from "react-router-dom";
 const ComicCard = ({ title, img, id }) => {
   return (
     <div className={styles.card}>
-      <img src={img} alt={title} className={styles["card-img"]} />
-      <div className={styles["card-body"]}>
-        <Link to={`/comic/${id}`} className={styles["card-title"]}>
-          {title}
-        </Link>
-      </div>
+      <Link to={`/comic/${id}`} className={styles.link}>
+        <img src={img} alt={title} className={styles["card-img"]} />
+      </Link>
+      <div className={styles["card-title"]}>{title}</div>
     </div>
   );
 };

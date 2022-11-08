@@ -36,11 +36,17 @@
   padding: 2rem;
 }
 
+.left-container img {
+  max-width: 100%;
+  height: auto;
+}
+
 .comics {
   width: fit-content;
 }
 
 .lists {
   display: flex;
+  flex-direction: column;
   gap: 2rem;
 }

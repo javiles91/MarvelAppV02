@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 
 const ComicStoryItem = ({ name, id, type }) => {
   return (
-    <li>
-      <Link to={`/${type}/${id}`}>{name}</Link>
+    <li className={styles["list-item"]}>
+      <Link to={`/${type}/${id}`} className={styles.link}>
+        {name}{" "}
+      </Link>
     </li>
   );
 };

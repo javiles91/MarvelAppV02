@@ -42,7 +42,6 @@ const Slider = () => {
   const slideStyle = {
     width: "100%",
     height: "100%",
-
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundImage: `url(${slides[idx]})`,

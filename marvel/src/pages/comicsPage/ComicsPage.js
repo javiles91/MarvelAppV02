@@ -33,10 +33,17 @@ const ComicsPage = () => {
   }
 
   return (
-    <div>
+    <div className={styles["main-container"]}>
       <ComicsFilter />
-
-      <h1 className={styles["heading-1"]}>Marvel Comics</h1>
+      <div className={styles["title-cont"]}>
+        <h1 className={styles["heading-1"]}>Marvel Comics</h1>
+        <button
+          onClick={() => console.log("sorting comics")}
+          className={styles["sort-btn"]}
+        >
+          ⇅ A/Z
+        </button>
+      </div>
       <div className={styles["cards-container"]}>
         {comics.map((comic) => {
           return (
