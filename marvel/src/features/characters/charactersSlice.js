@@ -25,7 +25,7 @@ const charactersSlice = createSlice({
       state.offset = 20 * (pageNumber - 1);
     },
     toggleAscending: (state) => {
-      console.log("ascending");
+      // console.log("ascending"); Delete this later
       state.ascending = !state.ascending;
     },
   },

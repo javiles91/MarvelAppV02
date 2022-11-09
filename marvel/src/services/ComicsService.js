@@ -5,8 +5,9 @@ export const getComics = ({
   format = "",
   title = "",
   issueNumber = "",
+  orderBy = "issueNumber",
 }) => {
-  const possibleParams = { offset, format, title, issueNumber };
+  const possibleParams = { offset, format, title, issueNumber, orderBy };
 
   const params = {};
 

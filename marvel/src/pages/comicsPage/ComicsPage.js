@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import ComicsCard from "../../components/comicCard/ComicCard";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./ComicsPage.module.css";
-import { fetchComics } from "../../features/comics/ComicsSlice";
+import {
+  fetchComics,
+  toggleAscending,
+} from "../../features/comics/ComicsSlice";
 import { useParams } from "react-router-dom";
 import Pagination from "../../components/pagination/Pagination";
 import { setPageAndOffset } from "../../features/comics/ComicsSlice";
@@ -16,13 +19,15 @@ const ComicsPage = () => {
     dispatch(setPageAndOffset(comicsPage));
   }, [comicsPage]);
 
-  const { isLoading, comics, page, offset, total } = useSelector(
+  const { isLoading, comics, page, offset, total, ascending } = useSelector(
     (state) => state.comics
   );
 
   useEffect(() => {
-    dispatch(fetchComics({ offset }));
-  }, [offset]);
+    let orderBy = "issueNumber";
+    if (!ascending) orderBy = "-issueNumber";
+    dispatch(fetchComics({ offset, orderBy }));
+  }, [offset, ascending]);
 
   if (isLoading) {
     return (
@@ -38,10 +43,10 @@ const ComicsPage = () => {
       <div className={styles["title-cont"]}>
         <h1 className={styles["heading-1"]}>Marvel Comics</h1>
         <button
-          onClick={() => console.log("sorting comics")}
+          onClick={() => dispatch(toggleAscending())}
           className={styles["sort-btn"]}
         >
-          ⇅ A/Z
+          ⇅ Issue number
         </button>
       </div>
       <div className={styles["cards-container"]}>

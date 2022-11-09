@@ -1,0 +1,31 @@
+.media-scroller {
+  display: grid;
+  gap: 1.5rem;
+  grid-auto-flow: column;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding-bottom: 2rem;
+}
+
+/* .media-scroller::-webkit-scrollbar {
+  position: absolute;
+  bottom: 0;
+} */
+
+.media-scroller::-webkit-scrollbar {
+  height: 0.7rem;
+}
+
+.media-scroller::-webkit-scrollbar-track {
+  background: grey;
+}
+
+.media-scroller::-webkit-scrollbar-thumb {
+  background: #ac2b30;
+  padding: 5rem;
+}
+
+/* .media-scroller::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+  display: none;
+} */

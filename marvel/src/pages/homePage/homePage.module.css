@@ -1,0 +1,12 @@
+.cont {
+  background-color: hwb(210 26% 66%);
+}
+
+.heading1 {
+  display: block;
+  color: white;
+  font-size: 4rem;
+  text-decoration: none;
+  width: fit-content;
+  margin: 3rem auto;
+}

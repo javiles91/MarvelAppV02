@@ -9,6 +9,7 @@ const initialState = {
   total: 0,
   isValidSearch: true,
   isFiltered: false,
+  ascending: true,
 };
 
 export const fetchComics = createAsyncThunk("get/comics", getComics);
@@ -24,6 +25,10 @@ const comicsSlice = createSlice({
     },
     setIsFiltered: (state, { payload }) => {
       state.isFiltered = payload;
+    },
+    toggleAscending: (state) => {
+      console.log("ascending");
+      state.ascending = !state.ascending;
     },
   },
   extraReducers: {
@@ -48,6 +53,7 @@ const comicsSlice = createSlice({
   },
 });
 
-export const { setPageAndOffset, setIsFiltered } = comicsSlice.actions;
+export const { setPageAndOffset, setIsFiltered, toggleAscending } =
+  comicsSlice.actions;
 
 export default comicsSlice.reducer;
