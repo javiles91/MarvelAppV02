@@ -8,6 +8,7 @@ import ComicPage from "./pages/comicPage/ComicPage";
 import StoryPage from "./pages/storyPage/StoryPage";
 import ErrorPage from "./pages/errorPage/ErrorPage";
 import ComicCharactersPage from "./pages/charactersFromComic/ComicCharactersPage";
+import Footer from "./components/Footer/Footer";
 
 import Header from "./components/header/Header";
 import NavBar from "./components/navBar/NavBar";
@@ -31,6 +32,7 @@ function App() {
         <Route path="story/:storyId" element={<StoryPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
+      <Footer />
     </>
   );
 }

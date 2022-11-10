@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./homePage.module.css";
 import { Link } from "react-router-dom";
 
+
 function HomePage() {
   const dispatch = useDispatch();
 
@@ -41,7 +42,7 @@ function HomePage() {
       </Link>
 
       <HorizontalScroller cardItems={comics} cardType="comics" />
-      <h1 className={styles.heading1}>Footer</h1>
+      
     </div>
   );
 }
