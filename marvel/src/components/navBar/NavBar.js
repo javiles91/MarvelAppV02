@@ -27,6 +27,7 @@ const NavBar = () => {
         <Link to={`comics/1`} onClick={comicLinkHandler}>
           Comics
         </Link>
+        <Link to={"bookmarks"}>Bookmarks</Link>
       </nav>
     </>
   );
