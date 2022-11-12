@@ -6,6 +6,7 @@
 .card {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .card-img {
@@ -32,4 +33,33 @@
 .card:hover .card-title {
   color: rgb(79, 79, 236);
   font-weight: bold;
+}
+
+.card:hover .bookmarking {
+  z-index: 1;
+}
+
+.bookmarking {
+  color: white;
+  background-color: #2c3e50;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.3s ease-in;
+  transform: translateY(-4px);
+}
+
+.card ion-icon {
+  color: white;
+  font-size: 24px;
+}
+
+.card ion-icon:hover {
+  color: rgba(4, 0, 255, 0.733);
+  cursor: pointer;
 }

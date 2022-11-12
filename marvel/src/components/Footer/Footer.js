@@ -22,7 +22,7 @@ const Footer = () => {
               <a className={styles["footer-link"]} href="#">
                 <ion-icon
                   className={styles["social-icon"]}
-                  name={styles["logo-instagram"]}
+                  name="logo-instagram"
                 ></ion-icon>
               </a>
             </li>
@@ -30,7 +30,7 @@ const Footer = () => {
               <a className={styles["footer-link"]} href="#">
                 <ion-icon
                   className={styles["social-icon"]}
-                  name={styles["logo-facebook"]}
+                  name="logo-facebook"
                 ></ion-icon>
               </a>
             </li>
@@ -38,7 +38,7 @@ const Footer = () => {
               <a className={styles["footer-link"]} href="#">
                 <ion-icon
                   className={styles["social-icon"]}
-                  name={styles["logo-twitter"]}
+                  name="logo-twitter"
                 ></ion-icon>
               </a>
             </li>

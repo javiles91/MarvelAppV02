@@ -59,3 +59,31 @@
 .card:hover .card-img {
   transform: scale(1.25);
 }
+
+.card:hover .bookmarking {
+  z-index: 1;
+}
+
+.bookmarking {
+  color: white;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  right: 0;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  /* transition: transform 0.3s ease-in; */
+  transition-delay: 0.2s;
+}
+
+.card ion-icon {
+  color: white;
+  font-size: 24px;
+}
+
+.card ion-icon:hover {
+  color: rgba(4, 0, 255, 0.733);
+  cursor: pointer;
+}

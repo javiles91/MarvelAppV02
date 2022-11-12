@@ -4,7 +4,7 @@ import { getComics } from "../../services/ComicsService";
 const initialState = {
   comics: [],
   isLoading: true,
-  page: 1,
+  page: 0,
   offset: 0,
   total: 0,
   isValidSearch: true,

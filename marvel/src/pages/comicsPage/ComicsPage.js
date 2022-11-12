@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import ComicsCard from "../../components/comicCard/ComicCard";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./ComicsPage.module.css";
@@ -23,11 +23,23 @@ const ComicsPage = () => {
     (state) => state.comics
   );
 
-  useEffect(() => {
+  const useDidMountEffect = (fn) => {
+    const didMount = useRef(false);
+
+    useEffect(() => {
+      if (didMount.current) {
+        fn();
+      } else {
+        didMount.current = true;
+      }
+    }, [offset, ascending, page]);
+  };
+
+  useDidMountEffect(() => {
     let orderBy = "issueNumber";
     if (!ascending) orderBy = "-issueNumber";
     dispatch(fetchComics({ offset, orderBy }));
-  }, [offset, ascending]);
+  });
 
   if (isLoading) {
     return (

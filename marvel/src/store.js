@@ -8,6 +8,7 @@ import sliderReducer from "./features/slider/SliderSlice";
 import FilterReducer from "./features/filter/FilterSlice";
 import charactersFromComicReducer from "./features/characters/charactersFromComicSlice";
 import HorizontalScrollerReducer from "./features/horizontalScroller/HorizontalScrollerSlice";
+import bookmarksReducer from "./features/bookmarks/bookmarksSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
     slider: sliderReducer,
     charactersFilter: FilterReducer,
     horizontalScroller: HorizontalScrollerReducer,
+    bookmarks: bookmarksReducer,
   },
 });

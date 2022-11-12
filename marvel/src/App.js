@@ -9,6 +9,7 @@ import StoryPage from "./pages/storyPage/StoryPage";
 import ErrorPage from "./pages/errorPage/ErrorPage";
 import ComicCharactersPage from "./pages/charactersFromComic/ComicCharactersPage";
 import Footer from "./components/Footer/Footer";
+import Bookmarks from "./pages/bookmarksPage/Bookmarks";
 
 import Header from "./components/header/Header";
 import NavBar from "./components/navBar/NavBar";
@@ -24,6 +25,7 @@ function App() {
         <Route path="character/:characterId" element={<CharacterPage />} />
         <Route path="comics/:comicsPage" element={<ComicsPage />} />
         <Route path="comic/:comicId" element={<ComicPage />} />
+        <Route path="bookmarks" element={<Bookmarks />} />
         <Route
           path="comic/characters/:comicId"
           element={<ComicCharactersPage />}

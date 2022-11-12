@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import CharacterCard from "../../components/characterCard/CharacterCard";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./CharactersPage.module.css";
@@ -25,12 +25,27 @@ const CharactersPage = () => {
     (state) => state.characters
   );
 
-  useEffect(() => {
+  //function to avoid useEffect ejecution on initial render
+
+  const useDidMountEffect = (fn) => {
+    const didMount = useRef(false);
+
+    useEffect(() => {
+      if (didMount.current) {
+        fn();
+      } else {
+        didMount.current = true;
+      }
+    }, [offset, ascending, page]);
+  };
+
+  useDidMountEffect(() => {
     // console.log("fetch characters");
     let orderBy = "name";
     if (!ascending) orderBy = "-name";
+
     dispatch(fetchCharacters({ offset, orderBy }));
-  }, [offset, ascending]);
+  });
 
   if (isLoading) {
     return (

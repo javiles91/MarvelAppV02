@@ -4,7 +4,7 @@ import { getCharacters } from "../../services/CharactersService";
 const initialState = {
   characters: [],
   isLoading: true,
-  page: 1,
+  page: 0,
   offset: 0,
   ascending: true,
   total: 0,
@@ -21,8 +21,10 @@ const charactersSlice = createSlice({
   reducers: {
     setPageAndOffset: (state, { payload }) => {
       const pageNumber = payload;
-      state.page = Number(pageNumber);
-      state.offset = 20 * (pageNumber - 1);
+      const page = Number(pageNumber);
+      const offset = 20 * (pageNumber - 1);
+      const newState = { ...state, page, offset };
+      return newState;
     },
     toggleAscending: (state) => {
       // console.log("ascending"); Delete this later
