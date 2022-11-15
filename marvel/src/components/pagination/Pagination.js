@@ -30,6 +30,7 @@ const Pagination = ({ page, nextPage, previousPage, type, total }) => {
         <li
           className={styles["change-page"]}
           onClick={() => {
+            if (page === Math.ceil(total / 20)) return;
             navigate(`/${type}/${page + 1}`);
           }}
         >
