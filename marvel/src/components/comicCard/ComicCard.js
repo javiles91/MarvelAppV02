@@ -11,16 +11,12 @@ const ComicCard = ({ title, img, id }) => {
   const comicId = id;
 
   const bookmarkHandler = () => {
-    const bookMarkIcon = bookmarkIconRef.current;
-
     const comicObj = { [`${comicId}`]: { title, img, id } };
 
     if (comics[comicId] === undefined) {
       dispatch(addComic(comicObj));
-      bookMarkIcon.style.color = "red";
     } else {
       dispatch(removeComic(comicId));
-      bookMarkIcon.style.color = "white";
     }
   };
 

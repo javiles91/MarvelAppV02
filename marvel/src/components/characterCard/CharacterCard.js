@@ -9,21 +9,16 @@ import {
 
 const CharacterCard = ({ name, img, id, description }) => {
   const dispatch = useDispatch();
-  const bookmarkIconRef = useRef("null");
+
   const { characters } = useSelector((state) => state.bookmarks);
   const characterId = id;
 
   const bookmarkHandler = () => {
-    const bookMarkIcon = bookmarkIconRef.current;
-
     const characterObj = { [`${characterId}`]: { name, img, id, description } };
-
     if (characters[characterId] === undefined) {
       dispatch(addCharacter(characterObj));
-      bookMarkIcon.style.color = "red";
     } else {
       dispatch(removeCharacter(characterId));
-      bookMarkIcon.style.color = "white";
     }
   };
 
@@ -36,7 +31,6 @@ const CharacterCard = ({ name, img, id, description }) => {
         <ion-icon
           name="bookmark"
           onClick={bookmarkHandler}
-          ref={bookmarkIconRef}
           style={{ color: color }}
         ></ion-icon>
       </div>

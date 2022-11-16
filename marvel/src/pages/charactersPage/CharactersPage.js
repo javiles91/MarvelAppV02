@@ -10,6 +10,7 @@ import {
 import { fetchCharacters } from "../../features/characters/charactersSlice";
 import { useParams } from "react-router-dom";
 import Filter from "../../components/charactersfilter/Filter";
+import Loading from "../../components/loading/Loading";
 
 const CharactersPage = () => {
   // console.log("render");
@@ -48,11 +49,7 @@ const CharactersPage = () => {
   });
 
   if (isLoading) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

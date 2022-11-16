@@ -18,14 +18,9 @@ const ComicsFilter = () => {
 
   useEffect(() => {
     const handleInputEvent = (e) => {
-      console.log("eventHandler");
       const formData = new FormData(formRef.current);
       const { title, issueNumber, format } = Object.fromEntries(
         formData.entries()
-      );
-
-      console.log(
-        Boolean([title, issueNumber, format].some((input) => input !== ""))
       );
 
       if ([title, issueNumber, format].some((input) => input !== "")) {
@@ -58,7 +53,6 @@ const ComicsFilter = () => {
   const comicSearchFields = (
     <div className={styles.cont} ref={inputsParentRef}>
       <FilterInput
-        onChange={() => console.log("Comic title")}
         type="text"
         name="title"
         label="Title"
@@ -66,7 +60,6 @@ const ComicsFilter = () => {
         required={false}
       />
       <FilterInput
-        onChange={() => console.log("Comic issueNumber")}
         type="number"
         name="issueNumber"
         label="Issue Number"
@@ -75,11 +68,7 @@ const ComicsFilter = () => {
       />
       <div className={styles["format-cont"]}>
         <label htmlFor="format">Select format</label>
-        <select
-          id="format"
-          name="format"
-          onChange={() => console.log("comics format")}
-        >
+        <select id="format" name="format">
           <option value="" default></option>
           <option value="comic">Comic</option>
           <option value="magazine">Magazine</option>

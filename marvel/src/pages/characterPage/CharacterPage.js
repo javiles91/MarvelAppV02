@@ -7,6 +7,11 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./CharacterPage.module.css";
 import ComicStoryItem from "../../components/ComicStoryItem/ComicStoryItem";
+import {
+  addCharacter,
+  removeCharacter,
+} from "../../features/bookmarks/bookmarksSlice";
+import Loading from "../../components/loading/Loading";
 
 const CharacterPage = () => {
   const dispatch = useDispatch();
@@ -20,21 +25,43 @@ const CharacterPage = () => {
     return state.character;
   });
 
+  const { characters } = useSelector((state) => state.bookmarks);
+  const color = characters[id] === undefined ? "black" : "red";
+
   useEffect(() => {
     dispatch(fetchCharacterById(characterId));
   }, [id]);
 
   if (isLoading) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <Loading />;
   }
+
+  const bookmarkHandler = () => {
+    const characterObj = {
+      [`${characterId}`]: {
+        name: character.name,
+        img: `${character.thumbnail.path}.${character.thumbnail.extension}`,
+        id: characterId,
+        description: character.description,
+      },
+    };
+    if (characters[characterId] === undefined) {
+      dispatch(addCharacter(characterObj));
+    } else {
+      dispatch(removeCharacter(characterId));
+    }
+  };
 
   return (
     <div className={styles["main-container"]}>
-      <h1 className={styles.title}>{character.name}</h1>
+      <h1 className={styles.title}>
+        {character.name}{" "}
+        <ion-icon
+          style={{ color: color }}
+          name="star"
+          onClick={bookmarkHandler}
+        ></ion-icon>
+      </h1>
       <div className={styles["sub-container"]}>
         <div className={styles["left-container"]}>
           <img

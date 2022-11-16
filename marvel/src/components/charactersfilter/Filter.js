@@ -14,7 +14,6 @@ import FilterInput from "../../components/filterInput/FilterInput";
 import { setType } from "../../features/filter/FilterSlice";
 
 const Filter = () => {
-  // console.log("filter render");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -51,7 +50,6 @@ const Filter = () => {
     if (filterType === "comic") {
       dispatch(resetValidityforName());
       const handleInputEvent = (e) => {
-        console.log("char handler");
         const formData = new FormData(formRef.current);
         const { ComicTitle, issueNumber, startYear } = Object.fromEntries(
           formData.entries()
@@ -121,9 +119,6 @@ const Filter = () => {
     <div className={`${styles["char-field"]} `}>
       <FilterInput
         reference={nameRef}
-        onChange={() => {
-          console.log("userName");
-        }}
         type="text"
         name="CharacterName"
         label="Character name"
@@ -143,9 +138,6 @@ const Filter = () => {
       ref={comicFieldsContRef}
     >
       <FilterInput
-        onChange={() => {
-          console.log("title");
-        }}
         type="text"
         name="ComicTitle"
         label="Title"
@@ -155,7 +147,6 @@ const Filter = () => {
         id={2}
       />
       <FilterInput
-        onChange={() => console.log("issue number")}
         type="number"
         name="issueNumber"
         label="Issue number"
@@ -165,7 +156,6 @@ const Filter = () => {
         id={3}
       />
       <FilterInput
-        onChange={() => console.log("start Year")}
         type="number"
         name="startYear"
         label="Start year"

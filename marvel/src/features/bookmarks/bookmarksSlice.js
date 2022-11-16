@@ -11,17 +11,14 @@ const bookmarksSlice = createSlice({
   initialState,
   reducers: {
     addCharacter: (state, action) => {
-      console.log("add");
       const characterObject = action.payload;
       state.characters = { ...state.characters, ...characterObject };
     },
     removeCharacter: (state, action) => {
-      console.log("remove");
       const characterId = action.payload;
       delete state.characters[characterId];
     },
     addComic: (state, action) => {
-      console.log("add comic");
       const comicObject = action.payload;
       state.comics = { ...state.comics, ...comicObject };
     },

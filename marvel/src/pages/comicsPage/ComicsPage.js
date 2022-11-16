@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import Pagination from "../../components/pagination/Pagination";
 import { setPageAndOffset } from "../../features/comics/ComicsSlice";
 import ComicsFilter from "../../components/comicsFilter/ComicsFilter";
+import Loading from "../../components/loading/Loading";
 
 const ComicsPage = () => {
   const dispatch = useDispatch();
@@ -42,11 +43,7 @@ const ComicsPage = () => {
   });
 
   if (isLoading) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

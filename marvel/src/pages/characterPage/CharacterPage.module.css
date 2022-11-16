@@ -50,3 +50,13 @@
   flex-direction: column;
   gap: 2rem;
 }
+
+ion-icon:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 400px) {
+  .sub-container {
+    flex-direction: column;
+  }
+}

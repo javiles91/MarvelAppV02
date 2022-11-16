@@ -36,6 +36,17 @@
   padding: 2rem;
 }
 
+.left-container img {
+  max-width: 100%;
+  height: auto;
+}
+
 .container li {
   list-style-type: none;
+}
+
+@media (max-width: 400px) {
+  .sub-container {
+    flex-direction: column;
+  }
 }

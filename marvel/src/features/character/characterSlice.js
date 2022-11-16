@@ -27,7 +27,6 @@ const characterSlice = createSlice({
       state.id = action.payload;
     },
     resetValidityforName: (state) => {
-      console.log("adios");
       state.isValidCharacterName = true;
     },
   },

@@ -7,6 +7,7 @@ import {
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CharacterCard from "../../components/characterCard/CharacterCard";
+import Loading from "../../components/loading/Loading";
 
 const ComicCharactersPage = () => {
   const dispatch = useDispatch();
@@ -22,11 +23,7 @@ const ComicCharactersPage = () => {
   }, []);
 
   if (isLoading) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
