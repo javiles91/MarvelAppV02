@@ -1,0 +1,50 @@
+.formInput {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+input {
+  padding: 0.3rem;
+  margin: 3px 0px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+input[type="number"] {
+  width: 7rem;
+}
+
+input[type="text"] {
+  width: 100%;
+}
+
+input[type="submit"] {
+  background-color: white;
+  padding: 4px 8px;
+}
+
+label {
+  font-size: 1.9rem;
+  color: white;
+  width: fit-content;
+}
+
+span {
+  font-size: 12px;
+  padding: 3px;
+  color: red;
+  display: none;
+}
+
+select {
+  font-size: 1.6rem;
+  color: black;
+  width: fit-content;
+  background-color: white;
+  height: 2rem;
+}
+
+::placeholder {
+  color: grey;
+}

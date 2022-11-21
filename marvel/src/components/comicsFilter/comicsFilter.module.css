@@ -1,0 +1,17 @@
+.form-cont {
+  width: fit-content;
+  margin: auto;
+}
+
+.cont {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  gap: 1rem;
+}
+
+.format-cont {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}

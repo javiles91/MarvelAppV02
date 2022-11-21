@@ -1,0 +1,44 @@
+.list-item {
+  list-style-type: none;
+  counter-increment: item;
+  text-transform: lowercase;
+}
+
+.list-item:before {
+  content: counter(item) ". ";
+  color: black;
+  font-size: 1.4rem;
+}
+
+.link {
+  font-size: 1.4rem;
+  background-image: linear-gradient(to right, blue, blue 50%, #000 50%);
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.link:before {
+  content: "";
+  background: blue;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.link:hover {
+  background-position: 0;
+}
+
+.link:hover::before {
+  width: 100%;
+}
